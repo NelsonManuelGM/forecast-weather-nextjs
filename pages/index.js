@@ -1,9 +1,14 @@
-import styled from "styled-components";
+import { useState } from "react";
 
-const Title = styled.h1`
-  color: ${props=>props.theme.palette.blue_jeans};
-`;
+import { WeatherBox, WeatherBroadcast } from "../components";
 
 export default function Home() {
-  return <Title>Miami</Title>;
+  const [place, setPlace] = useState("Miami");
+
+  return (
+    <>
+      <WeatherBox place={place} />
+      <WeatherBroadcast />
+    </>
+  );
 }

@@ -8,7 +8,6 @@ export const Canvas = styled.main`
 
   width: 100vw;
   height: 100vh;
-  padding: 4px;
 
   display: flex;
   flex-direction: column;
@@ -16,11 +15,12 @@ export const Canvas = styled.main`
   align-items: center;
 `;
 
-export const Wrapper = styled.section`
-  border-radius: 60px;
+export const Wrapper = styled.article`
+  border-radius: 50px;
   border: black 1px solid;
   width: 400px;
   height: 90vh;
+  padding: 8px;
 
   display: flex;
   flex-direction: column;
@@ -28,7 +28,10 @@ export const Wrapper = styled.section`
 
   background-color: ${props=>props.theme.palette.rich_black_fogra_29};
 
-  @media (max-width: 400px) {
+  @media (max-width: ${props=>props.theme.breakPoint}) {
     width: 100%;
+    height: 100%;
+    border-radius: 0px;
+    padding: 0px;
   }
 `;
