@@ -1,16 +1,21 @@
 import { ThemeProvider } from "styled-components";
+
 import { GlobalStyle, theme } from "../styles/global";
-import MobileWrapper from "../components/wrapper";
+import MobileWrapper from "../src/components/wrapper";
+import AppContext from "../src/context";
+import { reducer, initialState } from "../src/context/reducer";
 
 function MyApp({ Component, pageProps }) {
   return (
     <>
       <GlobalStyle />
-      <ThemeProvider theme={theme}>
-        <MobileWrapper>
-          <Component {...pageProps} />
-        </MobileWrapper>
-      </ThemeProvider>
+      <AppContext initialState={initialState} reducers={reducer}>
+        <ThemeProvider theme={theme}>
+          <MobileWrapper>
+            <Component {...pageProps} />
+          </MobileWrapper>
+        </ThemeProvider>
+      </AppContext>
     </>
   );
 }

@@ -1,4 +1,5 @@
 import * as React from "react";
+import { SunnyIco } from "./weather-icons";
 
 const Schedule = (props) => (
   <svg xmlns="http://www.w3.org/2000/svg" height={24} width={24} {...props}>
@@ -22,13 +23,19 @@ const PersonPinCircleIco = (props) => (
   <svg xmlns="http://www.w3.org/2000/svg" height={24} width={24} {...props}>
     <path d="M12 15q1.4 0 2.525-.688 1.125-.687 1.775-1.812-.875-.725-1.975-1.113Q13.225 11 12 11t-2.325.387q-1.1.388-1.975 1.113.65 1.125 1.775 1.812Q10.6 15 12 15Zm0-5q.825 0 1.413-.588Q14 8.825 14 8t-.587-1.412Q12.825 6 12 6q-.825 0-1.412.588Q10 7.175 10 8t.588 1.412Q11.175 10 12 10Zm0 12q-4.025-3.425-6.012-6.363Q4 12.7 4 10.2q0-3.75 2.413-5.975Q8.825 2 12 2t5.587 2.225Q20 6.45 20 10.2q0 2.5-1.987 5.437Q16.025 18.575 12 22Z" />
   </svg>
-)
+);
 
 const DotIco = (props) => (
   <svg xmlns="http://www.w3.org/2000/svg" height={20} width={20} {...props}>
     <path d="M10 14.667q-1.917 0-3.292-1.365Q5.333 11.938 5.333 10t1.365-3.302Q8.062 5.333 10 5.333t3.302 1.365Q14.667 8.062 14.667 10q0 1.917-1.365 3.292-1.364 1.375-3.302 1.375Z" />
   </svg>
-)
+);
 
-
-export { Schedule, DensityIco, MoreIco, PersonPinCircleIco, DotIco };
+export {
+  Schedule,
+  DensityIco,
+  MoreIco,
+  PersonPinCircleIco,
+  DotIco,
+  SunnyIco,
+};

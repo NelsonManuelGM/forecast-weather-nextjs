@@ -7,8 +7,15 @@ import {
   IconName,
   TitleWrapper,
   Loading,
+  Section,
 } from "./styles";
-import { DensityIco, MoreIco, PersonPinCircleIco, DotIco } from "../icons";
+import {
+  DensityIco,
+  MoreIco,
+  PersonPinCircleIco,
+  DotIco,
+  SunnyIco,
+} from "../icons";
 
 const WeatherBox = ({ place }) => {
   const themeContext = useTheme();
@@ -23,12 +30,17 @@ const WeatherBox = ({ place }) => {
             <Title>{place}</Title>
           </IconName>
           <Loading>
-            <DotIco fill={'green'}/>
+            <DotIco fill={"green"} />
             Updating
           </Loading>
         </TitleWrapper>
         <MoreIco fill={themeContext.palette.platinum} />
       </Header>
+
+      <Section>
+        <SunnyIco />
+        
+      </Section>
     </Wrapper>
   );
 };

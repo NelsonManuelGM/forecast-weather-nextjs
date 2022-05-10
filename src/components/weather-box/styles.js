@@ -12,7 +12,7 @@ export const Wrapper = styled.section`
   width: 100%;
   height: 100%;
   border-radius: 42px;
-  padding: 20px 20px;
+  padding: 30px 20px;
 
   @media (max-width: ${(props) => props.theme.breakPoint}) {
     border-radius: 0px;
@@ -53,3 +53,7 @@ export const Loading = styled.div`
   flex-direction: row;
   align-items: center;
 `;
+
+export const Section = styled.section`
+margin-top: 50px;
+`
