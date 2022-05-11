@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const Title = styled.h1`
   color: ${(props) => props.theme.palette.platinum};
@@ -21,6 +21,17 @@ export const Wrapper = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  ${(props) =>
+    props.shrink
+      ? css`
+          height: 400px;
+          transition: height 0.3s;
+        `
+      : css`
+          height: 100%;
+          transition: height 0.1s;
+        `}
 `;
 
 export const Header = styled.header`
@@ -55,5 +66,48 @@ export const Loading = styled.div`
 `;
 
 export const Section = styled.section`
-margin-top: 50px;
-`
+  margin-top: 50px;
+  height: 100%;
+  
+  ${(props) =>
+    props.shrink
+      ? css`
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+        `
+      : null}
+`;
+
+export const Temperature = styled.h1`
+  margin: 0px;
+  font-size: 10rem;
+  font-weight: 700;
+
+  ${(props) =>
+    props.shrink
+      ? css`
+          font-size: 6rem;
+        `
+      : null}
+`;
+
+export const TemperatureDegree = styled.div`
+  color: ${(props) => props.theme.palette.platinum};
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+
+  p {
+    margin-top: 30px;
+    font-size: 3rem;
+    font-weight: 100;
+    ${(props) =>
+      props.shrink
+        ? css`
+            margin-top: 15px;
+            font-size: 2rem;
+          `
+        : null}
+  }
+`;

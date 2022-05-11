@@ -14,33 +14,50 @@ import {
   MoreIco,
   PersonPinCircleIco,
   DotIco,
-  SunnyIco,
+  ArrowBackIco,
 } from "../icons";
+import { useAppState } from "../../context";
+import WeatherTemperature from "./weather-temperature-display";
 
 const WeatherBox = ({ place }) => {
   const themeContext = useTheme();
+  const { state, dispatch } = useAppState();
+
+  const { isShrinkWeatherBox = false } = state;
 
   return (
-    <Wrapper>
+    <Wrapper shrink={isShrinkWeatherBox}>
       <Header>
-        <DensityIco fill={themeContext.palette.platinum} />
+        <span
+          onClick={() =>
+            dispatch({
+              type: "SHRINK_WEATHER_BOX",
+              payload: !isShrinkWeatherBox,
+            })
+          }
+        >
+          {isShrinkWeatherBox ? (
+            <ArrowBackIco fill={themeContext.palette.platinum} />
+          ) : (
+            <DensityIco fill={themeContext.palette.platinum} />
+          )}
+        </span>
         <TitleWrapper>
           <IconName>
             <PersonPinCircleIco fill={themeContext.palette.platinum} />
             <Title>{place}</Title>
           </IconName>
-          <Loading>
-            <DotIco fill={"green"} />
-            Updating
-          </Loading>
+          {!isShrinkWeatherBox ? (
+            <Loading>
+              <DotIco fill={"green"} />
+              Updating
+            </Loading>
+          ) : null}
         </TitleWrapper>
         <MoreIco fill={themeContext.palette.platinum} />
       </Header>
 
-      <Section>
-        <SunnyIco />
-        
-      </Section>
+      <WeatherTemperature shrink={isShrinkWeatherBox} />
     </Wrapper>
   );
 };
