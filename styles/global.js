@@ -5,8 +5,7 @@ export const GlobalStyle = createGlobalStyle`
     body {
     padding: 0;
     margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-        Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+    font-family: Helvetica, sans-serif;
     }
 
     a {
@@ -25,7 +24,7 @@ export const theme = {
     blue_jeans: "#16ABF8ff",
     azure: "#1482F3ff",
     oxford_blue: "#052649ff",
-    platinum: "#E6E7E3ff",
+    platinum: "#ffffff",
   },
   breakPoint: '400px'
 };

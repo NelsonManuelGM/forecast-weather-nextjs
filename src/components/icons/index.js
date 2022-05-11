@@ -31,11 +31,18 @@ const DotIco = (props) => (
   </svg>
 );
 
+const ArrowBackIco = (props) => (
+  <svg xmlns="http://www.w3.org/2000/svg" height={24} width={24} {...props}>
+    <path d="m14 18-6-6 6-6 1.4 1.4-4.6 4.6 4.6 4.6Z" />
+  </svg>
+)
+
 export {
   Schedule,
   DensityIco,
   MoreIco,
   PersonPinCircleIco,
   DotIco,
+  ArrowBackIco,
   SunnyIco,
 };
