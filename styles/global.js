@@ -26,5 +26,5 @@ export const theme = {
     oxford_blue: "#052649ff",
     platinum: "#ffffff",
   },
-  breakPoint: '400px'
+  breakPoint: '425px'
 };
