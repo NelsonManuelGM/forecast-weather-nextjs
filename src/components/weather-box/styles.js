@@ -2,7 +2,7 @@ import styled, { css } from "styled-components";
 
 export const Title = styled.h1`
   color: ${(props) => props.theme.palette.platinum};
-  margin: 0px;
+  margin: 0 0 0 5px;
   font-size: x-large;
   font-weight: 500;
 `;
@@ -49,6 +49,7 @@ export const Wrapper = styled.section`
 export const Header = styled.header`
   width: 100%;
   display: flex;
+  align-content: center;
   justify-content: space-between;
 `;
 
@@ -151,16 +152,33 @@ export const TemperatureDegree = styled.div`
 // weather info styles
 
 export const InfoWrapper = styled.section`
-  border-top: 1px solid #ffffff26;
+  border-top: 1px solid ${(props) => props.theme.palette.platinum + "20"};
   height: 150px;
   width: 100%;
   padding: 20px 40px 0 40px;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   color: ${(props) => props.theme.palette.platinum};
 `;
 
 export const Info = styled.div`
   display: flex;
+  justify-content: center;
+  align-items: center;
   flex-direction: column;
+  width: 75px;
+
+  .info-value {
+    margin: 0px;
+    margin-top: 5px;
+    font-size: small;
+    color: ${(props) => props.theme.palette.platinum};
+  }
+
+  .info-type {
+    margin: 0px;
+    margin-top: 2px;
+    font-size: small;
+    color: ${(props) => props.theme.palette.platinum + "80"};
+  }
 `;

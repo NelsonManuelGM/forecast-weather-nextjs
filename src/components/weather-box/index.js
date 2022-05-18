@@ -14,6 +14,7 @@ import {
   DensityIco,
   MoreIco,
   PersonPinCircleIco,
+  Schedule,
   DotIco,
   ArrowBackIco,
 } from "../icons";
@@ -28,8 +29,8 @@ const WeatherBox = ({ place }) => {
   const { isShrinkWeatherBox = false } = state;
 
   const [temperature, setTemperature] = useState(24);
-  const [type, setType] = useState('Cloudy - Rainy');
-  const [date, setDate] = useState('Monday, December 30th')
+  const [type, setType] = useState("Cloudy - Rainy");
+  const [date, setDate] = useState("Monday, December 30th");
 
   return (
     <Wrapper shrink={isShrinkWeatherBox}>
@@ -43,14 +44,24 @@ const WeatherBox = ({ place }) => {
           }
         >
           {isShrinkWeatherBox ? (
-            <ArrowBackIco fill={themeContext.palette.platinum} className={'cl-pointer'}/>
+            <ArrowBackIco
+              fill={themeContext.palette.platinum}
+              className={"cl-pointer"}
+            />
           ) : (
-            <DensityIco fill={themeContext.palette.platinum} className={'cl-pointer'}/>
+            <DensityIco
+              fill={themeContext.palette.platinum}
+              className={"cl-pointer"}
+            />
           )}
         </span>
         <TitleWrapper>
           <IconName>
-            <PersonPinCircleIco fill={themeContext.palette.platinum} />
+            {isShrinkWeatherBox ? (
+              <Schedule fill={themeContext.palette.platinum} />
+            ) : (
+              <PersonPinCircleIco fill={themeContext.palette.platinum} />
+            )}
             <Title>{place}</Title>
           </IconName>
           {!isShrinkWeatherBox ? (
@@ -60,7 +71,10 @@ const WeatherBox = ({ place }) => {
             </Loading>
           ) : null}
         </TitleWrapper>
-        <MoreIco fill={themeContext.palette.platinum} className={'cl-pointer'}/>
+        <MoreIco
+          fill={themeContext.palette.platinum}
+          className={"cl-pointer"}
+        />
       </Header>
 
       <WeatherTemperature
