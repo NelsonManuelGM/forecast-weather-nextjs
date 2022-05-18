@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useTheme } from "styled-components";
 
 import {
@@ -18,12 +19,17 @@ import {
 } from "../icons";
 import { useAppState } from "../../context";
 import WeatherTemperature from "./weather-temperature-display";
+import { WeatherInfo } from "./weather-info";
 
 const WeatherBox = ({ place }) => {
   const themeContext = useTheme();
   const { state, dispatch } = useAppState();
 
   const { isShrinkWeatherBox = false } = state;
+
+  const [temperature, setTemperature] = useState(24);
+  const [type, setType] = useState('Cloudy - Rainy');
+  const [date, setDate] = useState('Monday, December 30th')
 
   return (
     <Wrapper shrink={isShrinkWeatherBox}>
@@ -37,9 +43,9 @@ const WeatherBox = ({ place }) => {
           }
         >
           {isShrinkWeatherBox ? (
-            <ArrowBackIco fill={themeContext.palette.platinum} />
+            <ArrowBackIco fill={themeContext.palette.platinum} className={'cl-pointer'}/>
           ) : (
-            <DensityIco fill={themeContext.palette.platinum} />
+            <DensityIco fill={themeContext.palette.platinum} className={'cl-pointer'}/>
           )}
         </span>
         <TitleWrapper>
@@ -54,10 +60,17 @@ const WeatherBox = ({ place }) => {
             </Loading>
           ) : null}
         </TitleWrapper>
-        <MoreIco fill={themeContext.palette.platinum} />
+        <MoreIco fill={themeContext.palette.platinum} className={'cl-pointer'}/>
       </Header>
 
-      <WeatherTemperature shrink={isShrinkWeatherBox} />
+      <WeatherTemperature
+        shrink={isShrinkWeatherBox}
+        temperature={temperature}
+        type={type}
+        date={date}
+      />
+
+      <WeatherInfo />
     </Wrapper>
   );
 };

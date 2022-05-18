@@ -1,19 +1,23 @@
 import { Section, Temperature, TemperatureDegree } from "./styles";
 import { SunnyIco } from "../icons";
 
-export default function WeatherTemperature({ shrink }) {
+export default function WeatherTemperature({ shrink, temperature, type, date }) {
   return (
+    <>
       <Section shrink={shrink}>
         <SunnyIco
-          height={shrink ? "20mm" : null}
-          width={shrink ? "20mm" : null}
+          height={shrink ? "35mm" : null}
+          width={shrink ? "35mm" : null}
         />
         <TemperatureDegree shrink={shrink}>
-          <Temperature className="degree-number" shrink={shrink}>
-            12
+          <Temperature shrink={shrink}>
+            <p className="degree-number">{temperature}</p>
+            <p className="degree-sign">&#176;</p>
           </Temperature>
-          <p>&#176;</p>
+          {shrink ? <></> : <p className="weather-title">{type}</p>}
+          <p className="weather-date">{shrink ? type : date}</p>
         </TemperatureDegree>
       </Section>
+    </>
   );
 }

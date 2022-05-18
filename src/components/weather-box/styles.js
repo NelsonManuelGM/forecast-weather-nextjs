@@ -9,8 +9,13 @@ export const Title = styled.h1`
 
 export const Wrapper = styled.section`
   background-color: ${(props) => props.theme.palette.blue_jeans};
+  background-image: linear-gradient(
+    ${(props) => props.theme.palette.blue_jeans},
+    ${(props) => props.theme.palette.azure}
+  );
   width: 100%;
   height: 100%;
+  max-height: 650px;
   border-radius: 42px;
   padding: 30px 20px;
 
@@ -21,6 +26,13 @@ export const Wrapper = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  .cl-pointer {
+    &:hover {
+      cursor: pointer;
+      fill: ${(props) => props.theme.palette.rich_black_fogra_29};
+    }
+  }
 
   ${(props) =>
     props.shrink
@@ -65,49 +77,90 @@ export const Loading = styled.div`
   align-items: center;
 `;
 
+// weather temperature display styles
 export const Section = styled.section`
-  margin-top: 50px;
+  margin-top: 10px;
   height: 100%;
-  
+
   ${(props) =>
     props.shrink
       ? css`
+          width: 80%;
           display: flex;
           flex-direction: row;
           align-items: center;
+          justify-content: space-around;
         `
       : null}
 `;
 
-export const Temperature = styled.h1`
-  margin: 0px;
-  font-size: 10rem;
-  font-weight: 700;
-
-  ${(props) =>
-    props.shrink
-      ? css`
-          font-size: 6rem;
-        `
-      : null}
-`;
-
-export const TemperatureDegree = styled.div`
-  color: ${(props) => props.theme.palette.platinum};
+export const Temperature = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  align-items: flex-start;
+  /* height: 150px; */
+  .degree-number {
+    margin: 0px;
+    font-size: 8rem;
+    font-weight: 700;
 
-  p {
-    margin-top: 30px;
-    font-size: 3rem;
-    font-weight: 100;
     ${(props) =>
       props.shrink
         ? css`
-            margin-top: 15px;
+            font-size: 6rem;
+          `
+        : null}
+  }
+  .degree-sign {
+    margin: 0px;
+    margin-top: 18px;
+    font-size: 3rem;
+    font-weight: 100;
+
+    ${(props) =>
+      props.shrink
+        ? css`
+            margin-top: 14px;
             font-size: 2rem;
           `
         : null}
   }
+
+  /* ${(props) =>
+    props.shrink
+      ? css`
+          font-size: 8rem;
+        `
+      : null} */
+`;
+
+export const TemperatureDegree = styled.div`
+  color: ${(props) => props.theme.palette.platinum};
+
+  .weather-title {
+    margin: 0px;
+    font-size: x-large;
+  }
+  .weather-date {
+    margin: 0px;
+    font-size: small;
+    color: ${(props) => props.theme.palette.platinum + "80"};
+  }
+`;
+
+// weather info styles
+
+export const InfoWrapper = styled.section`
+  border-top: 1px solid #ffffff26;
+  height: 150px;
+  width: 100%;
+  padding: 20px 40px 0 40px;
+  display: flex;
+  justify-content: space-around;
+  color: ${(props) => props.theme.palette.platinum};
+`;
+
+export const Info = styled.div`
+  display: flex;
+  flex-direction: column;
 `;
