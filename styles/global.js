@@ -1,21 +1,21 @@
-import { createGlobalStyle } from "styled-components";
+import { css } from "@emotion/react";
 
-export const GlobalStyle = createGlobalStyle`
-    html,
-    body {
+export const globalStyle = css`
+  html,
+  body {
     padding: 0;
     margin: 0;
     font-family: Helvetica, sans-serif;
-    }
+  }
 
-    a {
+  a {
     color: inherit;
     text-decoration: none;
-    }
+  }
 
-    * {
+  * {
     box-sizing: border-box;
-    }
+  }
 `;
 
 export const theme = {
@@ -26,5 +26,5 @@ export const theme = {
     oxford_blue: "#052649ff",
     platinum: "#ffffff",
   },
-  breakPoint: '425px'
+  breakPoint: "425px",
 };
