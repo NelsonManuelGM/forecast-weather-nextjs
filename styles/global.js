@@ -1,4 +1,5 @@
 import { css } from "@emotion/react";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 export const globalStyle = css`
   html,
@@ -18,7 +19,7 @@ export const globalStyle = css`
   }
 `;
 
-export const theme = {
+export const theme = createTheme({
   palette: {
     rich_black_fogra_29: "#020B19ff",
     blue_jeans: "#16ABF8ff",
@@ -27,4 +28,12 @@ export const theme = {
     platinum: "#ffffff",
   },
   breakPoint: "425px",
-};
+});
+
+export function AppTheme({ children, ...props }) {
+  return (
+    <ThemeProvider theme={theme} {...props}>
+      {children}
+    </ThemeProvider>
+  );
+}

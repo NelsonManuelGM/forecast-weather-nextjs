@@ -1,6 +1,6 @@
-import { ThemeProvider, Global } from "@emotion/react";
+import { Global } from "@emotion/react";
 
-import { globalStyle, theme } from "../styles/global";
+import { globalStyle, AppTheme } from "../styles/global";
 import MobileWrapper from "../src/components/wrapper";
 import AppContext from "../src/context";
 import { reducer, initialState } from "../src/context/reducer";
@@ -10,11 +10,11 @@ function MyApp({ Component, pageProps }) {
     <>
       <AppContext initialState={initialState} reducers={reducer}>
         <Global styles={globalStyle} />
-        <ThemeProvider theme={theme}>
+        <AppTheme>
           <MobileWrapper>
             <Component {...pageProps} />
           </MobileWrapper>
-        </ThemeProvider>
+        </AppTheme>
       </AppContext>
     </>
   );

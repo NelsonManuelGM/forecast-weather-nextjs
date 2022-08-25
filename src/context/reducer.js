@@ -1,6 +1,14 @@
 export const initialState = {
   isShrinkWeatherBox: false,
   fetchingData: false,
+  gps: {
+    latitude: 0,
+    longitude: 0,
+    accuracy: 0,
+  },
+  gpsAccuracyThreshold: 30,
+  positionAccuracyThreshold: 20,
+  weatherData: {}
 };
 
 export function reducer(state, action) {
@@ -9,6 +17,10 @@ export function reducer(state, action) {
       return { ...state, isShrinkWeatherBox: action.payload };
     case "FETCHING_DATA":
       return { ...state, fetchingData: action.payload };
+    case "SET_DATA":
+      return { ...state, weatherData: action.payload };
+    case "UPDATE_GPS_POSITION":
+      return { ...state, ...{ gps: action.payload } };
     default:
       return state;
   }
