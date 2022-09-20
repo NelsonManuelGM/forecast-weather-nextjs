@@ -1,34 +1,24 @@
 import { useState } from "react";
-import { useTheme } from "styled-components";
+import { useTheme } from "@emotion/react";
+import { TextField, InputAdornment, Box } from "@mui/material";
+import {
+  MapOutlined,
+  ChevronLeft,
+  UnfoldLess,
+  MoreVert,
+} from "@mui/icons-material";
 
-import {
-  Wrapper,
-  Header,
-  Title,
-  IconName,
-  TitleWrapper,
-  Loading,
-  Section,
-} from "./styles";
-import {
-  DensityIco,
-  MoreIco,
-  PersonPinCircleIco,
-  Schedule,
-  DotIco,
-  ArrowBackIco,
-} from "../icons";
+import { Wrapper, Header } from "./styles";
 import { useAppState } from "../../context";
 import WeatherTemperature from "./weather-temperature-display";
 import { WeatherInfo } from "./weather-info";
 
-const WeatherBox = ({ place }) => {
+const WeatherBox = ({ place, setPlace, isShrinkWeatherBox }) => {
   const themeContext = useTheme();
   const { state, dispatch } = useAppState();
+  const { temp = 0, wind = 0, humidity = 0, rain = 0 } = state.weatherData;
 
-  const { isShrinkWeatherBox = false } = state;
-
-  const [temperature, setTemperature] = useState(24);
+  // TODO pending
   const [type, setType] = useState("Cloudy - Rainy");
   const [date, setDate] = useState("Monday, December 30th");
 
@@ -44,47 +34,50 @@ const WeatherBox = ({ place }) => {
           }
         >
           {isShrinkWeatherBox ? (
-            <ArrowBackIco
-              fill={themeContext.palette.platinum}
+            <ChevronLeft
               className={"cl-pointer"}
+              htmlColor={themeContext.palette.platinum}
             />
           ) : (
-            <DensityIco
-              fill={themeContext.palette.platinum}
+            <UnfoldLess
               className={"cl-pointer"}
+              htmlColor={themeContext.palette.platinum}
             />
           )}
         </span>
-        <TitleWrapper>
-          <IconName>
-            {isShrinkWeatherBox ? (
-              <Schedule fill={themeContext.palette.platinum} />
-            ) : (
-              <PersonPinCircleIco fill={themeContext.palette.platinum} />
-            )}
-            <Title>{place}</Title>
-          </IconName>
-          {!isShrinkWeatherBox ? (
-            <Loading>
-              <DotIco fill={"green"} />
-              Updating
-            </Loading>
-          ) : null}
-        </TitleWrapper>
-        <MoreIco
-          fill={themeContext.palette.platinum}
-          className={"cl-pointer"}
-        />
+        <Box sx={{ display: "flex", alignItems: "flex-end" }}>
+          <TextField
+            hiddenLabel
+            id="standard-basic"
+            variant="standard"
+            placeholder="location"
+            value={place}
+            onChange={({ target }) => setPlace(target.value)}
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <MapOutlined htmlColor={themeContext.palette.platinum} />
+                </InputAdornment>
+              ),
+            }}
+          />
+        </Box>
+        <span>
+          <MoreVert
+            htmlColor={themeContext.palette.platinum}
+            className={"cl-pointer"}
+          />
+        </span>
       </Header>
 
       <WeatherTemperature
         shrink={isShrinkWeatherBox}
-        temperature={temperature}
+        temperature={temp}
         type={type}
         date={date}
       />
 
-      <WeatherInfo />
+      <WeatherInfo wind={wind} humidity={humidity} rain={rain} />
     </Wrapper>
   );
 };

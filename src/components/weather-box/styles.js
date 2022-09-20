@@ -1,4 +1,5 @@
-import styled, { css } from "styled-components";
+import { css } from "@emotion/react";
+import styled from "@emotion/styled";
 
 export const Title = styled.h1`
   color: ${(props) => props.theme.palette.platinum};
@@ -49,8 +50,11 @@ export const Wrapper = styled.section`
 export const Header = styled.header`
   width: 100%;
   display: flex;
-  align-content: center;
+  align-items: center;
   justify-content: space-between;
+  span {
+    height: 24px;
+  }
 `;
 
 export const IconName = styled.div`
@@ -61,8 +65,10 @@ export const IconName = styled.div`
 
 export const TitleWrapper = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
+  justify-content: space-between;
+  width: 190px;
 `;
 
 export const Loading = styled.div`
@@ -79,7 +85,7 @@ export const Loading = styled.div`
 `;
 
 // weather temperature display styles
-export const Section = styled.section`
+export const Article = styled.article`
   margin-top: 10px;
   height: 100%;
 
@@ -99,6 +105,7 @@ export const Temperature = styled.div`
   display: flex;
   flex-direction: row;
   align-items: flex-start;
+  justify-content: center;
   /* height: 150px; */
   .degree-number {
     margin: 0px;
@@ -151,7 +158,7 @@ export const TemperatureDegree = styled.div`
 
 // weather info styles
 
-export const InfoWrapper = styled.section`
+export const InfoWrapper = styled.footer`
   border-top: 1px solid ${(props) => props.theme.palette.platinum + "20"};
   height: 150px;
   width: 100%;
