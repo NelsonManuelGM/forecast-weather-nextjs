@@ -1,4 +1,4 @@
 import WeatherBox from "./weather-box";
-import WeatherBroadcast from "./weather-broadcast";
+import WeatherForecast from "./weather-forecast";
 
-export { WeatherBox, WeatherBroadcast };
+export { WeatherBox, WeatherForecast };

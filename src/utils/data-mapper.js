@@ -7,11 +7,9 @@
  *   rain: pop || precip || 0,
  */
 export default function dataMapper({ payload, place }) {
-  const data = {
-    temp: 0,
-    wind: 0,
-    humidity: 0,
-    rain: 0,
+  const compoundData = {
+    weatherData: { temp: 0, wind: 0, humidity: 0, rain: 0 },
+    forecastData: {},
   };
 
   if (place) {
@@ -23,12 +21,14 @@ export default function dataMapper({ payload, place }) {
     const location = locations[place];
     const {
       currentConditions: { humidity, temp, wspd, precip, pop },
+      values,
     } = location;
-    data.humidity = humidity || 0;
-    data.temp = Number(temp).toFixed(0) || 0;
-    data.wind = wspd || 0;
-    data.rain = pop || precip || 0;
+    compoundData.weatherData.humidity = humidity || 0;
+    compoundData.weatherData.temp = Number(temp).toFixed(0) || 0;
+    compoundData.weatherData.wind = wspd || 0;
+    compoundData.weatherData.rain = pop || precip || 0;
+    compoundData.forecastData = values;
   }
 
-  return data;
+  return compoundData;
 }

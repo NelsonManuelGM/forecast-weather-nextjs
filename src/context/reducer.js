@@ -18,7 +18,7 @@ export function reducer(state, action) {
       return { ...state, isShrinkWeatherBox: action.payload };
     case "FETCHING_DATA":
       return { ...state, fetchingData: action.payload };
-    case "SET_DATA":
+    case "SET_WETHER_DATA":
       return { ...state, weatherData: action.payload };
     case "UPDATE_GPS_POSITION":
       return { ...state, ...{ gps: action.payload } };
