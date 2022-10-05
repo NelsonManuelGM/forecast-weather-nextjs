@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import { WeatherBox, WeatherBroadcast } from "../src/components";
+import { WeatherBox, WeatherForecast } from "../src/components";
 import { useAppState } from "../src/context";
 import dataMapper from "../src/utils/data-mapper";
 import useDebounce from "../src/utils/debounce";
@@ -16,10 +16,10 @@ export default function Home() {
 
   useEffect(() => {
     async function fetchData() {
-      let data = {};
-
-      // TODO reuse when the moth limit is expired
-      data = dataMapper({ payload: await fetchWeatherForecast({ place }), place });
+      let { weatherData = {}, forecastData = {} } = dataMapper({
+        payload: await fetchWeatherForecast({ place }),
+        place,
+      });
 
       // TODO temporary API
       // try {
@@ -29,7 +29,8 @@ export default function Home() {
       //   console.error(error);
       // }
 
-      dispatch({ type: "SET_DATA", payload: data });
+      dispatch({ type: "SET_WETHER_DATA", payload: weatherData });
+      dispatch({ type: "UPDATE_WEATHER_FORECAST", payload: forecastData });
     }
     if (debouncedValue) fetchData();
   }, [debouncedValue]);
@@ -41,7 +42,7 @@ export default function Home() {
         setPlace={(value) => setPlace(value)}
         isShrinkWeatherBox={isShrinkWeatherBox}
       />
-      {/* <WeatherBroadcast /> */}
+      <WeatherForecast isShrinkWeatherBox={isShrinkWeatherBox} />
     </>
   );
 }
