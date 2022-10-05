@@ -2,48 +2,46 @@ import { useEffect, useState } from "react";
 
 import { WeatherBox, WeatherBroadcast } from "../src/components";
 import { useAppState } from "../src/context";
-import {
-  fetchWeatherForecast,
-  authenticationFunction,
-} from "../src/utils/requestData";
+import dataMapper from "../src/utils/data-mapper";
+import useDebounce from "../src/utils/debounce";
+import { fetchWeatherForecast } from "../src/utils/requestData";
 
 export default function Home() {
   const { state, dispatch } = useAppState();
-  const [place, setPlace] = useState("Miami");
+  const [place, setPlace] = useState("");
 
-  // useEffect(() => {
-  //   async function fetchData() {
-  //     let data = {};
-  //     let _token;
+  const { isShrinkWeatherBox = false } = state;
 
-  //     if (state.gps.latitude && state.gps.longitude) {
-  //       _token = await authenticationFunction();
+  const debouncedValue = useDebounce(place, 1000);
 
-  //       data = await fetchWeatherForecast({
-  //         lat: state.gps.latitude,
-  //         lng: state.gps.longitude,
-  //         token: _token,
-  //       });
-  //     }
-  //     dispatch({ type: "SET_DATA", payload: data });
-  //   }
+  useEffect(() => {
+    async function fetchData() {
+      let data = {};
 
-  //   fetchData();
-  // }, [dispatch, state.gps.latitude, state.gps.longitude]);
+      // TODO reuse when the moth limit is expired
+      data = dataMapper({ payload: await fetchWeatherForecast({ place }), place });
 
-  console.log(
-    "Latitude: " +
-      state.gps.latitude.toPrecision(21) +
-      " Longitude: " +
-      state.gps.longitude.toPrecision(21) +
-      " Accuracy: " +
-      state.gps.accuracy
-  );
+      // TODO temporary API
+      // try {
+      //   const response = await fetch("http://localhost:3000/api/hello");
+      //   data = dataMapper(await response.json());
+      // } catch (error) {
+      //   console.error(error);
+      // }
+
+      dispatch({ type: "SET_DATA", payload: data });
+    }
+    if (debouncedValue) fetchData();
+  }, [debouncedValue]);
 
   return (
     <>
-      {/* <WeatherBox place={place} />
-      <WeatherBroadcast /> */}
+      <WeatherBox
+        place={place}
+        setPlace={(value) => setPlace(value)}
+        isShrinkWeatherBox={isShrinkWeatherBox}
+      />
+      {/* <WeatherBroadcast /> */}
     </>
   );
 }

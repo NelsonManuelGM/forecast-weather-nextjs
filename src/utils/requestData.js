@@ -4,9 +4,9 @@ export async function fetchWeatherForecast({ place }) {
   let headers = new Headers();
   headers.set(
     "X-RapidAPI-Key",
-    `270430aaffmshc8bbbb08a1f4aa2p1b5c41jsn17601df4595e`
+    process.env.NEXT_PUBLIC_KEY
   );
-  headers.set("X-RapidAPI-Host", `visual-crossing-weather.p.rapidapi.com`);
+  headers.set("X-RapidAPI-Host", process.env.NEXT_PUBLIC_HOST);
 
   const params = {
     aggregateHours: "24",

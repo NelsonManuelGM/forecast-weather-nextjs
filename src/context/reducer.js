@@ -8,7 +8,8 @@ export const initialState = {
   },
   gpsAccuracyThreshold: 30,
   positionAccuracyThreshold: 20,
-  weatherData: {}
+  weatherData: {},
+  weatherForecast: [],
 };
 
 export function reducer(state, action) {
@@ -21,6 +22,8 @@ export function reducer(state, action) {
       return { ...state, weatherData: action.payload };
     case "UPDATE_GPS_POSITION":
       return { ...state, ...{ gps: action.payload } };
+    case "UPDATE_WEATHER_FORECAST":
+      return { ...state, ...{ weatherForecast: action.payload } };
     default:
       return state;
   }
