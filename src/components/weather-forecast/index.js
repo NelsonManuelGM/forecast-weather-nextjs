@@ -1,8 +1,13 @@
 import { useTheme } from "@emotion/react";
-import { ChevronRight, UnfoldLess, UnfoldMore } from "@mui/icons-material";
+import {
+  UnfoldLess,
+  UnfoldMore,
+  WrongLocation,
+} from "@mui/icons-material";
 
 import { useAppState } from "../../context";
-import { Wrapper } from "./styles";
+import { Wrapper, ForecastItems, NoInfoWarning } from "./styles";
+import Carousel from "../carousel";
 
 const WeatherForecast = ({ isShrinkWeatherBox }) => {
   const themeContext = useTheme();
@@ -18,7 +23,7 @@ const WeatherForecast = ({ isShrinkWeatherBox }) => {
           })
         }
       >
-        <p>7 days</p>
+        <p className="text-v3-gray">7 days</p>
         {isShrinkWeatherBox ? (
           <UnfoldLess
             className={"cl-pointer"}
@@ -31,6 +36,23 @@ const WeatherForecast = ({ isShrinkWeatherBox }) => {
           />
         )}
       </header>
+
+      {state.weatherForecast.length > 0 ? (
+        <>
+          {isShrinkWeatherBox ? (
+            <p className="text-v3 color_gray">column of days</p>
+          ) : (
+            <Carousel itemList={state.weatherForecast} />
+          )}
+        </>
+      ) : (
+        <NoInfoWarning>
+          <WrongLocation htmlColor={themeContext.palette.platinum + "80"} />
+          <p className="text-v3-gray">
+            There is not a selected place to show a broadcast for...
+          </p>
+        </NoInfoWarning>
+      )}
     </Wrapper>
   );
 };

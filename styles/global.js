@@ -17,6 +17,19 @@ export const globalStyle = css`
   * {
     box-sizing: border-box;
   }
+
+  .text-v3-gray {
+    margin: 0;
+    font-size: small;
+    color: #ffffff80;
+  }
+
+  .text-v3 {
+    margin: 0;
+    font-size: small;
+    color: #ffffff;
+  }
+
 `;
 
 export const theme = createTheme({

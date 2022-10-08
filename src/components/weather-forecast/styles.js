@@ -4,19 +4,15 @@ const Wrapper = styled.section`
   width: 100%;
   height: 100%;
   text-align: center;
-  padding-top: 15px;
+  padding: 15px 20px 20px 20px;
 
   header {
     display: inline-flex;
     align-items: center;
     justify-content: flex-end;
-    padding-right: 20px;
     width: 100%;
 
     p {
-      margin: 0;
-      font-size: small;
-      color: ${(props) => props.theme.palette.platinum + "80"};
       cursor: pointer;
     }
 
@@ -27,4 +23,15 @@ const Wrapper = styled.section`
   }
 `;
 
-export { Wrapper };
+const NoInfoWarning = styled.article`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 20px;
+
+  p {
+    margin-top: 20px;
+  }
+`;
+
+export { Wrapper, NoInfoWarning };
