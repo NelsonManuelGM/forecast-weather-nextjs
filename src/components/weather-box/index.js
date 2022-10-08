@@ -7,6 +7,7 @@ import {
   UnfoldLess,
   MoreVert,
 } from "@mui/icons-material";
+import { format } from "date-fns";
 
 import { Wrapper, Header } from "./styles";
 import { useAppState } from "../../context";
@@ -16,11 +17,14 @@ import { WeatherInfo } from "./weather-info";
 const WeatherBox = ({ place, setPlace, isShrinkWeatherBox }) => {
   const themeContext = useTheme();
   const { state, dispatch } = useAppState();
-  const { temp = 0, wind = 0, humidity = 0, rain = 0 } = state.weatherData;
-
-  // TODO pending
-  const [type, setType] = useState("Cloudy - Rainy");
-  const [date, setDate] = useState("Monday, December 30th");
+  const {
+    temp = 0,
+    wind = 0,
+    humidity = 0,
+    rain = 0,
+    datetime = Date.now(),
+    icon,
+  } = state.weatherData;
 
   return (
     <Wrapper shrink={isShrinkWeatherBox}>
@@ -73,8 +77,8 @@ const WeatherBox = ({ place, setPlace, isShrinkWeatherBox }) => {
       <WeatherTemperature
         shrink={isShrinkWeatherBox}
         temperature={temp}
-        type={type}
-        date={date}
+        type={String(icon).replace('-',' ').toLowerCase()}
+        date={format(datetime, "PPP")}
       />
 
       <WeatherInfo wind={wind} humidity={humidity} rain={rain} />

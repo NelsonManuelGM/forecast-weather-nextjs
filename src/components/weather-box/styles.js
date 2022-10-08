@@ -144,15 +144,13 @@ export const Temperature = styled.div`
 
 export const TemperatureDegree = styled.div`
   color: ${(props) => props.theme.palette.platinum};
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
   .weather-title {
     margin: 0px;
     font-size: x-large;
-  }
-  .weather-date {
-    margin: 0px;
-    font-size: small;
-    color: ${(props) => props.theme.palette.platinum + "80"};
   }
 `;
 

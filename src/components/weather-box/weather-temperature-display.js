@@ -19,7 +19,7 @@ export default function WeatherTemperature({
           <p className="degree-sign">&#176;</p>
         </Temperature>
         {shrink ? <></> : <p className="weather-title">{type}</p>}
-        <p className="weather-date">{shrink ? type : date}</p>
+        <p className="text-v3-gray">{shrink ? type : date}</p>
       </TemperatureDegree>
     </Article>
   );
