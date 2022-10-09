@@ -54,16 +54,20 @@ const Carousel = ({ itemList }) => {
         onClick={() => onMove("left")}
       />
       <ForecastItems ref={carouselRef}>
-        {itemList.map(({ datetimeStr, maxt }, index) => {
-          return (
-            <ForecastBox
-              key={index}
-              temp={maxt}
-              day={datetimeStr}
-              icon={"ICO"}
-            />
-          );
-        })}
+        {itemList.map(
+          ({ datetimeStr, maxt, humidity, wspd, pop, precip }, index) => {
+            return (
+              <ForecastBox
+                key={index}
+                temp={maxt}
+                day={datetimeStr}
+                wind={wspd}
+                humidity={humidity}
+                rain={pop || precip}
+              />
+            );
+          }
+        )}
       </ForecastItems>
       <ArrowCircleRight
         className="button button-right"

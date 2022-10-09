@@ -166,24 +166,3 @@ export const InfoWrapper = styled.footer`
   color: ${(props) => props.theme.palette.platinum};
 `;
 
-export const Info = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  width: 75px;
-
-  .info-value {
-    margin: 0px;
-    margin-top: 5px;
-    font-size: small;
-    color: ${(props) => props.theme.palette.platinum};
-  }
-
-  .info-type {
-    margin: 0px;
-    margin-top: 2px;
-    font-size: small;
-    color: ${(props) => props.theme.palette.platinum + "80"};
-  }
-`;

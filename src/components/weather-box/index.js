@@ -77,7 +77,7 @@ const WeatherBox = ({ place, setPlace, isShrinkWeatherBox }) => {
       <WeatherTemperature
         shrink={isShrinkWeatherBox}
         temperature={temp}
-        type={String(icon).replace('-',' ').toLowerCase()}
+        type={icon ? String(icon).replace('-',' ').toLowerCase(): '--'}
         date={format(datetime, "PPP")}
       />
 
