@@ -19,16 +19,15 @@ export default function dataMapper({ payload, place }) {
       return data;
     }
     const location = locations[place];
-    const {
-      currentConditions: { humidity, temp, wspd, precip, pop, icon },
-      values,
-    } = location;
+    const { values } = location;
+    const { humidity, temp, wspd, pop, conditions } = values[0];
+
     compoundData.weatherData.humidity = humidity || 0;
     compoundData.weatherData.temp = Number(temp).toFixed(0) || 0;
     compoundData.weatherData.wind = wspd || 0;
-    compoundData.weatherData.rain = pop || precip || 0;
-    compoundData.weatherData.icon = icon;
-    compoundData.forecastData = values;
+    compoundData.weatherData.rain = pop || 0;
+    compoundData.weatherData.conditions = conditions;
+    compoundData.forecastData = values.slice(1);
   }
 
   return compoundData;

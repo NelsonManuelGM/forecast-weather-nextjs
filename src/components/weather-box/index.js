@@ -23,7 +23,7 @@ const WeatherBox = ({ place, setPlace, isShrinkWeatherBox }) => {
     humidity = 0,
     rain = 0,
     datetime = Date.now(),
-    icon,
+    conditions,
   } = state.weatherData;
 
   return (
@@ -77,8 +77,8 @@ const WeatherBox = ({ place, setPlace, isShrinkWeatherBox }) => {
       <WeatherTemperature
         shrink={isShrinkWeatherBox}
         temperature={temp}
-        type={icon ? String(icon).replace('-',' ').toLowerCase(): '--'}
-        date={format(datetime, "PPP")}
+        type={conditions}
+        date={format(datetime, isShrinkWeatherBox ? "PPP" : "PPPP")}
       />
 
       <WeatherInfo wind={wind} humidity={humidity} rain={rain} />
