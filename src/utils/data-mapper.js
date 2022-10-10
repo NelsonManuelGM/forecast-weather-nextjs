@@ -6,28 +6,40 @@
  *   humidity: humidity || 0,
  *   rain: pop || precip || 0,
  */
-export default function dataMapper({ payload, place }) {
+export default function dataMapper({ payload, place, localRequest = false }) {
   const compoundData = {
     weatherData: { temp: 0, wind: 0, humidity: 0, rain: 0 },
-    forecastData: {},
+    weatherForecast: [],
   };
 
   if (place) {
-    const { locations } = payload;
-    if (!locations || !Object.keys(locations).includes(place)) {
-      console.error("incorrect place!");
-      return data;
-    }
-    const location = locations[place];
-    const { values } = location;
-    const { humidity, temp, wspd, pop, conditions } = values[0];
+    if (localRequest) {
+      console.log(payload);
+      // *just for local development
+      const { humidity, temp, wspd, pop, conditions } = payload.weatherData;
+      compoundData.weatherData.humidity = humidity || 0;
+      compoundData.weatherData.temp = Number(temp).toFixed(0) || 0;
+      compoundData.weatherData.wind = wspd || 0;
+      compoundData.weatherData.rain = pop || 0;
+      compoundData.weatherData.conditions = conditions;
+      compoundData.weatherForecast = payload.weatherForecast;
+    } else {
+      const { locations } = payload;
+      if (!locations || !Object.keys(locations).includes(place)) {
+        console.error("incorrect place!");
+        return data;
+      }
+      const location = locations[place];
+      const { values } = location;
+      const { humidity, temp, wspd, pop, conditions } = values[0];
 
-    compoundData.weatherData.humidity = humidity || 0;
-    compoundData.weatherData.temp = Number(temp).toFixed(0) || 0;
-    compoundData.weatherData.wind = wspd || 0;
-    compoundData.weatherData.rain = pop || 0;
-    compoundData.weatherData.conditions = conditions;
-    compoundData.forecastData = values.slice(1);
+      compoundData.weatherData.humidity = humidity || 0;
+      compoundData.weatherData.temp = Number(temp).toFixed(0) || 0;
+      compoundData.weatherData.wind = wspd || 0;
+      compoundData.weatherData.rain = pop || 0;
+      compoundData.weatherData.conditions = conditions;
+      compoundData.weatherForecast = values.slice(1);
+    }
   }
 
   return compoundData;

@@ -13,24 +13,33 @@ export default function Home() {
   const { isShrinkWeatherBox = false } = state;
 
   const debouncedValue = useDebounce(place, 1000);
+  const localRequest = process.env.NEXT_PUBLIC_REQUEST_TYPE === "local";
 
   useEffect(() => {
     async function fetchData() {
-      let { weatherData = {}, forecastData = {} } = dataMapper({
-        payload: await fetchWeatherForecast({ place }),
-        place,
-      });
-
-      // TODO temporary API
-      // try {
-      //   const response = await fetch("http://localhost:3000/api/hello");
-      //   data = dataMapper(await response.json());
-      // } catch (error) {
-      //   console.error(error);
-      // }
+      let data = {};
+      if (localRequest) {
+        // * local request
+        try {
+          const response = await fetch("http://localhost:3000/api/hello");
+          data = dataMapper({
+            payload: await response.json(),
+            place,
+            localRequest: true,
+          });
+        } catch (error) {
+          console.error(error);
+        }
+      } else {
+        data = dataMapper({
+          payload: await fetchWeatherForecast({ place }),
+          place,
+        });
+      }
+      let { weatherData = {}, weatherForecast = {} } = data;
 
       dispatch({ type: "SET_WETHER_DATA", payload: weatherData });
-      dispatch({ type: "UPDATE_WEATHER_FORECAST", payload: forecastData });
+      dispatch({ type: "UPDATE_WEATHER_FORECAST", payload: weatherForecast });
     }
     if (debouncedValue) fetchData();
   }, [debouncedValue]);
