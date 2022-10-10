@@ -106,7 +106,6 @@ export const Temperature = styled.div`
   flex-direction: row;
   align-items: flex-start;
   justify-content: center;
-  /* height: 150px; */
   .degree-number {
     margin: 0px;
     font-size: 8rem;
@@ -133,13 +132,6 @@ export const Temperature = styled.div`
           `
         : null}
   }
-
-  /* ${(props) =>
-    props.shrink
-      ? css`
-          font-size: 8rem;
-        `
-      : null} */
 `;
 
 export const TemperatureDegree = styled.div`
@@ -154,15 +146,12 @@ export const TemperatureDegree = styled.div`
   }
 `;
 
-// weather info styles
-
 export const InfoWrapper = styled.footer`
   border-top: 1px solid ${(props) => props.theme.palette.platinum + "20"};
   height: 150px;
   width: 100%;
-  padding: 20px 40px 0 40px;
+  padding: 10px 40px 0 40px;
   display: flex;
   justify-content: space-between;
   color: ${(props) => props.theme.palette.platinum};
 `;
-

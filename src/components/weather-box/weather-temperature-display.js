@@ -14,6 +14,7 @@ export default function WeatherTemperature({
         width={shrink ? "35mm" : null}
       />
       <TemperatureDegree shrink={shrink}>
+        {shrink ? <>{date}</> : null}
         <Temperature shrink={shrink}>
           <p className="degree-number">{temperature}</p>
           <p className="degree-sign">&#176;</p>

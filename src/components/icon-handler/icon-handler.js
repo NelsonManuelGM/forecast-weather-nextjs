@@ -29,7 +29,7 @@ export const Info = styled.div`
   }
 `;
 
-const humidityHandler = (value, themeContext) => {
+export const humidityHandler = (value, themeContext) => {
   if (value >= 75)
     return <HightHumidityIco fill={themeContext.palette.platinum} />;
   if (value >= 35 && value < 75)

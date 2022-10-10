@@ -1,20 +1,17 @@
 import { useTheme } from "@emotion/react";
-import {
-  UnfoldLess,
-  UnfoldMore,
-  WrongLocation,
-} from "@mui/icons-material";
+import { UnfoldLess, UnfoldMore, WrongLocation } from "@mui/icons-material";
 
 import { useAppState } from "../../context";
 import { Wrapper, ForecastItems, NoInfoWarning } from "./styles";
 import Carousel from "../carousel";
+import WeatherForecastList from "../weather-forecast-list";
 
 const WeatherForecast = ({ isShrinkWeatherBox }) => {
   const themeContext = useTheme();
   const { state, dispatch } = useAppState();
 
   return (
-    <Wrapper>
+    <Wrapper isShrinkWeatherBox={isShrinkWeatherBox}>
       <header
         onClick={() =>
           dispatch({
@@ -40,7 +37,7 @@ const WeatherForecast = ({ isShrinkWeatherBox }) => {
       {state.weatherForecast.length > 0 ? (
         <>
           {isShrinkWeatherBox ? (
-            <p className="text-v3 color_gray">column of days</p>
+            <WeatherForecastList itemList={state.weatherForecast} />
           ) : (
             <Carousel itemList={state.weatherForecast} />
           )}
