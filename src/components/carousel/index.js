@@ -36,7 +36,6 @@ const Carousel = ({ itemList }) => {
 
       if (direction === "right") {
         spacePosition = marginLeft - itemsWidth;
-        console.log(spacePosition);
 
         if (containerWidth - Math.abs(marginLeft) >= itemsWidth * 4)
           carouselRef.current.style.marginLeft = `${spacePosition}px`;
